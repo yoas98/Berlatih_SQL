@@ -1,0 +1,129 @@
+================================> Berlatih SQL <========================================
+
+01. Membuat Database(myshop)
+
+CREATE DATABASE myshop;
+
+========================================================================================
+
+02. Membuat Table(users, items, categories) di Dalam Database(myshop)
+
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  password VARCHAR(255)
+  );
+
+CREATE TABLE categories (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255)
+  );
+
+CREATE TABLE items (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  price INT,
+  stock INT,
+  category_id INT,
+  FOREIGN KEY (category_id) REFERENCES categories (id)
+  ON DELETE CASCADE ON UPDATE CASCADE
+  );
+
+========================================================================================
+
+03. Memasukkan Data pada Table(users, items, categories)
+
+INSERT INTO users VALUE (
+  '',
+  'John Doe',
+  'john@doe.com',
+  'john123'
+  );
+
+INSERT INTO users VALUE (
+  '',
+  'Jane Doe',
+  'jane@doe.com',
+  'jenita123'
+  );
+
+INSERT INTO categories VALUE (
+  '',
+  'gadget'
+  );
+
+INSERT INTO categories VALUE (
+  '',
+  'cloth'
+  );
+
+INSERT INTO categories VALUE (
+  '',
+  'men'
+  );
+
+INSERT INTO categories VALUE (
+  '',
+  'women'
+  );
+
+INSERT INTO categories VALUE (
+  '',
+  'branded'
+  );
+
+INSERT INTO items VALUE (
+  '',
+  'Sumsang b50',
+  'hape keren dari merek sumsang',
+  4000000,
+  100,
+  1
+  );
+
+INSERT INTO items VALUE (
+  '',
+  'Uniklooh',
+  'baju keren dari brand ternama',
+  500000,
+  50,
+  2
+  );
+
+INSERT INTO items VALUE (
+  '',
+  'IMHO Watch',
+  'jam tangan anak yang jujur banget',
+  2000000,
+  10,
+  1
+  );
+
+========================================================================================
+
+04. Mengambil Data dari Database(users, items, categories)
+  
+  a. Mengambil data users
+    SELECT id, name, email FROM users; 
+
+  b. Mengambil data items
+     SELECT * FROM items WHERE price > 1000000;
+     SELECT * FROM items WHERE name LIKE '%sang%';     
+
+
+  c. Menampilkan data items join dengan kategori
+     SELECT items.name, description, price, stock, category_id, categories.name AS kategori FROM items INNER JOIN categories ON items.category_id = categories.id;
+
+========================================================================================
+     
+05. Mengubah Data dari Database
+
+UPDATE items SET price = 2500000 WHERE name LIKE '%sumsang%';
+   atau
+UPDATE items SET price = 2500000 WHERE id = 1;
+
+
+
+
